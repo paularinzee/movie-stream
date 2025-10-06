@@ -1,0 +1,18 @@
+# Go
+/bin/
+/vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test binary
+*.test
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+.env
+*.env
