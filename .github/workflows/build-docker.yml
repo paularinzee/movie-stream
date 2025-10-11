@@ -27,7 +27,7 @@ jobs:
       - name: Build and push backend
         uses: docker/build-push-action@v5
         with:
-          context: ./server
+          context: ./server/movie-stream-api
           file: ./server/movie-stream-api/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/movie-stream-api:latest
