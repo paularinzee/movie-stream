@@ -15,34 +15,11 @@ spec:
     spec:
       containers:
         - name: backend
-          image: your-dockerhub-username/movie-stream-api:latest
+          image: paularinze/movie-stream-backend:latest
           ports:
             - containerPort: 5000
-          env:
-            - name: PORT
-              value: "5000"
-            - name: DATABASE_NAME
-              value: "movie-stream"
-            - name: BASE_PROMPT_TEMPLATE
-              value: "Return a response using one of these words: {rankings}..."
-            - name: RECOMENDED_MOVIE_LIMIT
-              value: "5"
-            - name: ALLOWED_ORIGINS
-              value: "http://localhost:5173,http://localhost:8080"
-            - name: GIN_MODE
-              value: "release"
-            - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: movie-stream-backend-secrets
-                  key: MONGODB_URI
-            - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: movie-stream-backend-secrets
-                  key: OPENAI_API_KEY
-            - name: SECRET_REFRESH_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: movie-stream-backend-secrets
-                  key: SECRET_REFRESH_KEY
+          envFrom:
+            - configMapRef:
+                name: movie-stream-config
+            - secretRef:
+                name: movie-stream-secrets
