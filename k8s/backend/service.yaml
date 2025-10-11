@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-stream-backend
+  namespace: movie-stream
+spec:
+  selector:
+    app: movie-stream-backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: ClusterIP

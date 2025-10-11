@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-stream-frontend
+  namespace: movie-stream
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-stream-frontend
+  template:
+    metadata:
+      labels:
+        app: movie-stream-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: paularinze/movie-stream-frontend:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: movie-stream-frontend-config
