@@ -98,3 +98,11 @@ npm install
 npm run dev
 ```
 - Frontend runs on http://localhost:5173
+
+## Author
+
+[Paul Nnaji](https://github.com/paularinzee)
+
+## License
+
+[MIT](./LICENSE)
