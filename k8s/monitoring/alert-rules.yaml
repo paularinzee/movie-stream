@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: movie-stream-alerts
+  namespace: monitoring
+spec:
+  groups:
+    - name: movie-stream-backend
+      rules:
+        - alert: HighMemoryUsage
+          expr: container_memory_usage_bytes{pod=~"movie-stream-api.*"} > 200000000
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Memory usage > 200MB on movie-stream-api pod"
+        - alert: BackendDown
+          expr: up{job="movie-stream-api"} == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "movie-stream-api pod is down"

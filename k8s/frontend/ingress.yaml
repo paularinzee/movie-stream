@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: movie-stream-ingress
   namespace: movie-stream
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik   # Use this instead of the deprecated annotation
   rules:
     - host: movie.local
       http:
@@ -21,6 +20,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: movie-stream-backend
+                name: movie-stream-api   # Fixed service name
                 port:
                   number: 5000

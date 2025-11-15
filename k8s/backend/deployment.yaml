@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: movie-stream-backend
+  name: movie-stream-api
   namespace: movie-stream
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: movie-stream-backend
+      app: movie-stream-api
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: paularinze/movie-stream-backend:latest
+          image: paularinze/movie-stream-api:latest
           ports:
             - containerPort: 5000
           envFrom:

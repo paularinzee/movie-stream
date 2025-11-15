@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: movie-stream-backend
+  name: movie-stream-api
   namespace: movie-stream
 spec:
   selector:
-    app: movie-stream-backend
+    app: movie-stream-api
   ports:
     - port: 5000
       targetPort: 5000

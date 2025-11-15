@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: movie-stream-backend-monitor
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: movie-stream-api
+  namespaceSelector:
+    matchNames:
+      - movie-stream
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s
