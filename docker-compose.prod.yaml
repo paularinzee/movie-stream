@@ -1,8 +1,8 @@
 services:
   web:
-    #image: gavinlon/magic-stream-web-prod:1.0.0
-    image: gavinlon/magic-stream-web-prod:${IMAGE_TAG:-latest}
-    container_name: magic-stream-web-prod
+   
+    image: paularinze/movie-stream-web-prod:${IMAGE_TAG:-latest}
+    container_name: movie-stream-web-prod
 
     ports: 
       - "8081:80"
@@ -10,7 +10,7 @@ services:
 
   api:
     #image: gavinlon/magic-stream-api-prod:1.0.0
-    image: gavinlon/magic-stream-api-prod:${IMAGE_TAG:-latest}
-    container_name: magic-stream-api-prod
+    image: paularinze/movie-stream-api-prod:${IMAGE_TAG:-latest}
+    container_name: movie-stream-api-prod
     
     restart: always

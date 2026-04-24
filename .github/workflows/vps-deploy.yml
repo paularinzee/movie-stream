@@ -16,10 +16,10 @@ jobs:
           fetch-depth: 0
           
       - name: Show API context files
-        run: ls -la Server/MagicStreamServer || true
+        run: ls -la server/movie-stream-api || true
 
       - name: Show Web context files
-        run: ls -la Client/magic-stream-client || true
+        run: ls -la client || true
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -31,8 +31,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            gavinlon/magic-stream-api-prod
-            gavinlon/magic-stream-web-prod
+            pauarinze/movie-stream-api-prod
+            paularinze/movie-stream-web-prod
           tags: |
             type=sha,format=short
             type=raw,value=latest
@@ -40,18 +40,18 @@ jobs:
       - name: Build & push API image
         uses: docker/build-push-action@v6
         with:
-          context: Server/MagicStreamServer
-          file: ${{ github.workspace }}/Server/MagicStreamServer/Dockerfile.prod
+          context: server/movie-stream-api
+          file: ${{ github.workspace }}/server/movie-stream-api/Dockerfile.prod
           push: true
-          tags: gavinlon/magic-stream-api-prod:${{ steps.meta.outputs.version }}
+          tags: paularinze/movie-stream-api-prod:${{ steps.meta.outputs.version }}
 
       - name: Build & push Web image
         uses: docker/build-push-action@v6
         with:
-          context: Client/magic-stream-client
-          file: ${{ github.workspace }}/Client/magic-stream-client/Dockerfile.prod
+          context: client
+          file: ${{ github.workspace }}/client/Dockerfile.prod
           push: true
-          tags: gavinlon/magic-stream-web-prod:${{ steps.meta.outputs.version }}
+          tags: paularinze/movie-stream-web-prod:${{ steps.meta.outputs.version }}
 
       - name: Setup SSH agent
         uses: webfactory/ssh-agent@v0.9.0

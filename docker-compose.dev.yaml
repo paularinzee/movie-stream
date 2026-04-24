@@ -1,34 +1,34 @@
 services:
   web:
-    image: magic-stream-web-dev:1.0.1
-    container_name: magic-stream-web-dev
+    image: movie-stream-web-dev:1.0.1
+    container_name: movie-stream-web-dev
     ports:
       - "5173:5173"
     build:
-      context: ./Client/magic-stream-client
+      context: ./client
       dockerfile: Dockerfile.dev
     develop:
       watch:
-        - path: ./Client/magic-stream-client/package.json
+        - path: ./client/package.json
           action: rebuild
-        - path: ./Client/magic-stream-client/package-lock.json
+        - path: ./client/package-lock.json
           action: rebuild
-        - path: ./Client/magic-stream-client
+        - path: ./client
           target: /app
           action: sync
 
   api:
-    image: magic-stream-api-dev:1.0.1
-    container_name: magic-stream-api-dev
+    image: movie-stream-api-dev:1.0.1
+    container_name: movie-stream-api-dev
     build:
-      context: ./Server/MagicStreamServer
+      context: ./server/movie-stream-api
       dockerfile: Dockerfile.dev
     develop:
       watch:
-        - path: ./Server/MagicStreamServer/go.mod
+        - path: ./server/movie-stream-api/go.mod
           action: rebuild
-        - path: ./Server/MagicStreamServer/go.sum
+        - path: ./server/movie-stream-api/go.sum
           action: rebuild
-        - path: ./Server/MagicStreamServer
+        - path: ./server/movie-stream-api
           target: /app
           action: sync
